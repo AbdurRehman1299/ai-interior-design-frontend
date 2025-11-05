@@ -1,8 +1,8 @@
 'use client';
 
 import { useMemo } from 'react';
-import * as THREE from '../../node_modules/@types/three';
-import { Shape } from '../../node_modules/@types/three';
+import * as THREE from 'three';
+import { Shape } from 'three';
 
 export default function Room3D({ roomConfig, results }) {
   const { width, depth, height, targetWall } = roomConfig;

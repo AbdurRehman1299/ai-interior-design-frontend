@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useMemo } from 'react';
-import * as THREE from '../../node_modules/@types/three';
+import * as THREE from 'three';
 
 export default function DepthMesh({ results }) {
   const meshRef = useRef();

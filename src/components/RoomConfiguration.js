@@ -24,9 +24,9 @@ export default function RoomConfiguration({ onComplete, selectedFile }) {
   ];
 
   return (
-    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+    <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
       <div className="flex items-center mb-3">
-        <Ruler className="w-5 h-5 mr-2 text-blue-600" />
+        <Ruler className="w-5 h-5 mr-2 text-green-600" />
         <h3 className="text-lg font-semibold text-gray-800">Room Dimensions</h3>
       </div>
       
@@ -49,7 +49,7 @@ export default function RoomConfiguration({ onComplete, selectedFile }) {
               step="0.5"
               value={config.width}
               onChange={(e) => setConfig({ ...config, width: parseFloat(e.target.value) })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500"
               required
             />
           </div>
@@ -65,7 +65,7 @@ export default function RoomConfiguration({ onComplete, selectedFile }) {
               step="0.5"
               value={config.depth}
               onChange={(e) => setConfig({ ...config, depth: parseFloat(e.target.value) })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500"
               required
             />
           </div>
@@ -81,7 +81,7 @@ export default function RoomConfiguration({ onComplete, selectedFile }) {
               step="0.1"
               value={config.height}
               onChange={(e) => setConfig({ ...config, height: parseFloat(e.target.value) })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500"
               required
             />
           </div>
@@ -99,7 +99,7 @@ export default function RoomConfiguration({ onComplete, selectedFile }) {
                 onClick={() => setConfig({ ...config, targetWall: option.value })}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   config.targetWall === option.value
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-green-600 text-white'
                     : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
                 }`}
               >
@@ -111,7 +111,7 @@ export default function RoomConfiguration({ onComplete, selectedFile }) {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
+          className="w-full bg-green-600 text-white font-medium py-2 px-4 rounded-md hover:bg-green-700 transition-colors"
         >
           Continue to Generate 3D Room
         </button>
