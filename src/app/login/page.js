@@ -1,9 +1,4 @@
-import Navigation from '../components/NavigationBar'
-
-export const metadata = {
-    title: "Login | RoomDev",
-    description: "A place to get go"
-};
+import Navigation from '@/components/Navigation'
 
 function Login() {
     return (
