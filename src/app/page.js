@@ -2,15 +2,15 @@ import Navigation from '@/components/NavigationBar'
 import { Button } from '@/components/ui/button'
 import { DoorOpenIcon } from 'lucide-react'
 import Link from 'next/link'
-import Head from 'next/head'
+
+export const metadata = {
+  title: 'RoomDev - AI Interior Designer',
+  description: 'Your Personal AI Interior Designer - Get hundreds of interior design ideas for your room - free with no limit.',
+};
 
 function Home() {
   return (
     <main>
-      <Head>
-        <title>Upload the Room Images - RoomDev</title>
-        <meta name="description" content="Upload images of your room and get AI-generated interior design ideas." />
-      </Head>
       <Navigation />
       <section className='mt-31'>
         <div className='w-[40%] mx-40 mt-20'>
