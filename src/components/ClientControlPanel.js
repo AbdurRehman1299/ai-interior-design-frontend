@@ -18,7 +18,7 @@ function Upload() {
     setRoomConfig(config);
     const formData = new FormData();
     formData.append('image', file);
-    const BACKEND_URL = "https://huggingface.co/spaces/AbdurRehman1288/interior-backend/";
+    const BACKEND_URL = "https://abdurrehman1288/interior-backend.hf.space";
 
     try {
       // We fetch from our Python server
