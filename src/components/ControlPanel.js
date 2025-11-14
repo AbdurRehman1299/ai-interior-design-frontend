@@ -13,7 +13,7 @@ function isColorSimilar(roomColor, tag) {
     return false;
 }
 
-export default function ControlPanel({ onGenerate, onAddFurniture, isLoading, error, results }) {
+function ControlPanel({ onGenerate, onAddFurniture, isLoading, error, results }) {
   const [aiRecommendations, setAiRecommendations] = useState(true);
   const [selectedFile, setSelectedFile] = useState(null);
   const [showRoomConfig, setShowRoomConfig] = useState(false);
@@ -46,9 +46,9 @@ export default function ControlPanel({ onGenerate, onAddFurniture, isLoading, er
   }, [aiRecommendations, results]);
 
   return (
-    <div className="w-1/3 h-screen bg-white p-6 shadow-lg overflow-y-auto">
+    <div className="w-full h-auto lg:w-1/3 lg:h-screen bg-white p-4 md:p-6 shadow-lg lg:overflow-y-auto">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">AI Interior Designer</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800">AI Interior Designer</h1>
         <p className="text-gray-500">Create your dream room in seconds</p>
       </div>
       <div className="mb-6">
@@ -79,9 +79,11 @@ export default function ControlPanel({ onGenerate, onAddFurniture, isLoading, er
         </div>
       )}
       {error && <div className="text-red-500 bg-red-100 p-3 rounded-lg my-4">Error: {error}</div>}
-      <hr className="my-8" />
+
+      <hr className="my-6 lg:my-8" />
+      
       <div>
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-4 gap-4 sm:gap-0">
           <h2 className="text-xl font-semibold text-gray-700">2. Add Furniture</h2>
           <div className="flex items-center">
             <label htmlFor="ai-toggle" className="text-sm font-medium text-gray-900 mr-3">AI Suggestions</label>
@@ -105,3 +107,5 @@ export default function ControlPanel({ onGenerate, onAddFurniture, isLoading, er
     </div>
   );
 }
+
+export default ControlPanel;

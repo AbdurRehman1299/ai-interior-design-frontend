@@ -3,7 +3,7 @@
 import { useRef, useMemo } from 'react';
 import * as THREE from 'three';
 
-export default function DepthMesh({ results }) {
+function DepthMesh({ results }) {
   const meshRef = useRef();
 
   // Create texture from original image
@@ -57,3 +57,5 @@ export default function DepthMesh({ results }) {
     </mesh>
   );
 }
+
+export default DepthMesh;

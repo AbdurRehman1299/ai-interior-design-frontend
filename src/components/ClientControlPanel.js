@@ -51,7 +51,7 @@ function Upload() {
 
   return (
     <div>
-      <main className="flex h-screen w-full bg-gray-100">
+      <main className="flex flex-col lg:flex-row w-full min-h-screen bg-gray-100">
         <ControlPanel
           onGenerate={handleGenerate}
           onAddFurniture={handleAddFurniture}
@@ -59,7 +59,11 @@ function Upload() {
           error={error}
           results={results}
         />
-        <SceneViewer results={results} furnitureInScene={furnitureInScene} roomConfig={roomConfig} />
+        <SceneViewer 
+          results={results} 
+          furnitureInScene={furnitureInScene} 
+          roomConfig={roomConfig} 
+        />
       </main>
     </div>
   );

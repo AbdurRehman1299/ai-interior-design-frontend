@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import * as THREE from 'three';
 import { Shape } from 'three';
 
-export default function Room3D({ roomConfig, results }) {
+function Room3D({ roomConfig, results }) {
   const { width, depth, height, targetWall } = roomConfig;
 
   // Load texture from uploaded image
@@ -180,3 +180,5 @@ export default function Room3D({ roomConfig, results }) {
     </group>
   );
 }
+
+export default Room3D;

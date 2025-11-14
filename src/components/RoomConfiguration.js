@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import { Ruler } from 'lucide-react';
 
-export default function RoomConfiguration({ onComplete, selectedFile }) {
+function RoomConfiguration({ onComplete, selectedFile }) {
   const [config, setConfig] = useState({
-    width: 5,  // meters
-    depth: 4,  // meters
-    height: 3, // meters
-    targetWall: 'front' // which wall the photo represents
+    width: 5,
+    depth: 4,
+    height: 3,
+    targetWall: 'front'
   });
 
   const handleSubmit = (e) => {
@@ -37,7 +37,7 @@ export default function RoomConfiguration({ onComplete, selectedFile }) {
       )}
 
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-3 gap-3 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Width (m)
@@ -119,3 +119,5 @@ export default function RoomConfiguration({ onComplete, selectedFile }) {
     </div>
   );
 }
+
+export default RoomConfiguration;

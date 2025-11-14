@@ -1,30 +1,27 @@
-import Navigation from '@/components/NavigationBar'
-import { Button } from '@/components/ui/button'
-import { DoorOpenIcon } from 'lucide-react'
-import Link from 'next/link'
+import Footer from '@/components/Footer';
+import CallToActionSection from '@/components/home/CallToAction';
+import FeaturesSection from '@/components/home/FeatureSection';
+import HeroSection from '@/components/home/HeroSection';
+import Navigation from '@/components/NavigationBar';
+import TestimonialsSection from '@/components/home/TestimonialsSection';
+import React from 'react';
 
 export const metadata = {
-  title: 'RoomDev - AI Interior Designer',
-  description: 'Your Personal AI Interior Designer - Get hundreds of interior design ideas for your room - free with no limit.',
-};
+  title: "Redesign Your Room with AI | RoomDev",
+  description: "Stuck on your room design? Use RoomDev for unlimited, free AI interior design ideas. Upload a photo and start visualizing your dream room in seconds."
+}
 
-function Home() {
+function Home(){
   return (
-    <main>
+    <main className="bg-white">
       <Navigation />
-      <section className='mt-31'>
-        <div className='w-[40%] mx-40 mt-20'>
-          <h1 className='text-5xl font-bold'>Your Personal AI Interior <span className='text-green-600'>Designer</span></h1>
-          <h2 className='mt-5'>Get hundreds of interior design ideas for your room -free with no limit.</h2>
-          <Link href='/upload' className='flex mt-5 text-white rounded-full py-3 text-lg'>
-            <Button>
-              Design Your Room <DoorOpenIcon />
-            </Button>
-          </Link>
-        </div>
-      </section>
+      <HeroSection />
+      <FeaturesSection />
+      <TestimonialsSection />
+      <CallToActionSection />
+      <Footer />
     </main>
   )
 }
 
-export default Home
+export default Home;

@@ -26,7 +26,7 @@ function Room({ aiDepth }) {
   );
 }
 
-export default function SceneViewer({ results, furnitureInScene, roomConfig }) {
+function SceneViewer({ results, furnitureInScene, roomConfig }) {
   // Default room config if not provided
   const defaultRoomConfig = {
     width: 5,
@@ -38,24 +38,26 @@ export default function SceneViewer({ results, furnitureInScene, roomConfig }) {
   const activeRoomConfig = roomConfig || defaultRoomConfig;
 
   return (
-    <div className="w-2/3 h-screen bg-gray-200 relative">
+    <div className="w-full aspect-video lg:w-2/3 lg:h-screen lg:aspect-auto bg-gray-200 relative">
+      
       {/* Display depth map if available */}
       {results?.depthMapUrl && (
-        <div className="absolute top-4 right-4 z-10 bg-white p-2 rounded-lg shadow-lg">
+        <div className="absolute top-2 right-2 lg:top-4 lg:right-4 z-10 bg-white p-2 rounded-lg shadow-lg">
           <h3 className="text-sm font-semibold mb-2">Depth Map</h3>
           <img 
             src={results.depthMapUrl} 
             alt="Depth Map" 
-            className="w-64 h-auto rounded"
+            className="w-32 sm:w-48 lg:w-64 h-auto rounded"
+            onError={(e) => e.target.style.display = 'none'} // Hide if image fails to load
           />
           {results.colors && (
             <div className="mt-2">
               <p className="text-xs font-medium mb-1">Extracted Colors:</p>
-              <div className="flex gap-1">
+              <div className="flex flex-wrap gap-1">
                 {results.colors.map((color, idx) => (
                   <div 
-                    key={idx} 
-                    className="w-8 h-8 rounded border border-gray-300"
+                    key={idx}
+                    className="w-6 h-6 lg:w-8 lg:h-8 rounded border border-gray-300"
                     style={{ backgroundColor: color }}
                     title={color}
                   />
@@ -97,3 +99,5 @@ export default function SceneViewer({ results, furnitureInScene, roomConfig }) {
     </div>
   );
 }
+
+export default SceneViewer;
