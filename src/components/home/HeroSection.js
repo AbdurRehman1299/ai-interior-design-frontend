@@ -29,7 +29,7 @@ function HeroSection() {
           
           <div className="lg:w-1/2 w-full mt-10 lg:mt-0">
             <img 
-              src="https://placehold.co/600x400/a3e635/172b4d?text=Beautiful+Room+Design" 
+              src="/licensed-image.jpeg" 
               alt="AI Interior Design Example"
               className="rounded-lg shadow-2xl w-full h-auto object-cover"
               onError={(e) => e.target.src='https://placehold.co/600x400?text=Image+Error'}

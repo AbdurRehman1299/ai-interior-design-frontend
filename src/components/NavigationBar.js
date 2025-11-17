@@ -10,22 +10,20 @@ function Navigation() {
     <nav className="bg-white shadow-sm fixed w-full z-50 top-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
+
+          <div className="shrink-0 flex items-center">
             <h1 className="text-2xl font-bold text-gray-900">
               Room<span className="text-green-600">Dev</span>
             </h1>
           </div>
-          
-          {/* Desktop Menu */}
+
           <div className="hidden md:flex md:items-center md:space-x-8">
             <a href="#" className="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
             <a href="#features" className="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Features</a>
             <a href="#testimonials" className="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Testimonials</a>
             <a href="/upload" className="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Design</a>
           </div>
-          
-          {/* Mobile Menu Button */}
+
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -44,7 +42,6 @@ function Navigation() {
         </div>
       </div>
       
-      {/* Mobile Menu (collapsible) */}
       <div className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'}`} id="mobile-menu">
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <a href="#" className="text-gray-600 hover:bg-gray-50 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium">Home</a>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '../ui/button';
 import { DoorOpenIcon } from 'lucide-react';
+import Link from 'next/link';
 
 function CallToActionSection() {
   return (
@@ -13,10 +14,12 @@ function CallToActionSection() {
           Start designing for free right now. No sign-up required, no limits on your creativity.
         </p>
         <div className="mt-8">
-          <Button className="bg-white text-green-700 hover:bg-gray-100">
-            Start Designing Now
-            <DoorOpenIcon className="h-5 w-5 ml-2" />
-          </Button>
+          <Link href="/upload">
+            <Button className="bg-white text-green-700 hover:bg-gray-100">
+              Start Designing Now
+              <DoorOpenIcon className="h-5 w-5 ml-2" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

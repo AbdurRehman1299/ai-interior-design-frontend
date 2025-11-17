@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { Ruler } from 'lucide-react';
 
-function RoomConfiguration({ onComplete, selectedFile }) {
+export default function RoomConfiguration({ onComplete, selectedFile }) {
   const [config, setConfig] = useState({
     width: 5,
     depth: 4,
-    height: 3,
+    height: 3, 
     targetWall: 'front'
   });
 
@@ -119,5 +119,3 @@ function RoomConfiguration({ onComplete, selectedFile }) {
     </div>
   );
 }
-
-export default RoomConfiguration;

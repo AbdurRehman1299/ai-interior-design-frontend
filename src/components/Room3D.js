@@ -3,27 +3,28 @@
 import { useMemo } from 'react';
 import * as THREE from 'three';
 import { Shape } from 'three';
+import { useTexture } from '@react-three/drei';
 
-function Room3D({ roomConfig, results }) {
+function Room3D({ roomConfig, results, ...props }) {
   const { width, depth, height, targetWall } = roomConfig;
 
-  // Load texture from uploaded image
+  const originalTexture = useTexture(results?.originalImageUrl || '');
   const wallTexture = useMemo(() => {
-    if (!results?.originalImageUrl) return null;
-    const loader = new THREE.TextureLoader();
-    const texture = loader.load(results.originalImageUrl);
-    texture.wrapS = THREE.ClampToEdgeWrapping;
-    texture.wrapT = THREE.ClampToEdgeWrapping;
-    return texture;
-  }, [results?.originalImageUrl]);
+    if (!originalTexture) return null;
 
-  // Create geometry with holes for windows/doors
+    const clonedTexture = originalTexture.clone();
+    clonedTexture.wrapS = THREE.ClampToEdgeWrapping;
+    clonedTexture.wrapT = THREE.ClampToEdgeWrapping;
+    clonedTexture.needsUpdate = true; 
+    return clonedTexture;
+
+  }, [originalTexture]);
+
   const createWallWithOpenings = (wallWidth, wallHeight, openings) => {
     if (!openings || openings.length === 0) {
       return new THREE.PlaneGeometry(wallWidth, wallHeight);
     }
 
-    // Create outer shape
     const shape = new Shape();
     shape.moveTo(-wallWidth / 2, -wallHeight / 2);
     shape.lineTo(wallWidth / 2, -wallHeight / 2);
@@ -31,7 +32,6 @@ function Room3D({ roomConfig, results }) {
     shape.lineTo(-wallWidth / 2, wallHeight / 2);
     shape.lineTo(-wallWidth / 2, -wallHeight / 2);
 
-    // Create holes for each opening
     openings.forEach((opening) => {
       const holeWidth = opening.width * wallWidth;
       const holeHeight = opening.height * wallHeight;
@@ -50,15 +50,18 @@ function Room3D({ roomConfig, results }) {
     return new THREE.ShapeGeometry(shape);
   };
 
-  // Create materials for different surfaces
   const materials = useMemo(() => {
+    const wallColor = results?.colors?.[0] || '#e8e8e8';
+    const floorColor = results?.colors?.[1] || '#8b7355';
+    const ceilingColor = '#ffffff';
+
     const defaultWallMaterial = new THREE.MeshStandardMaterial({ 
-      color: '#e8e8e8',
+      color: wallColor,
       roughness: 0.9,
       metalness: 0
     });
     
-    const texturedWallMaterial = wallTexture 
+    const texturedWallMaterial = wallTexture
       ? new THREE.MeshStandardMaterial({ 
           map: wallTexture,
           roughness: 0.8,
@@ -67,13 +70,13 @@ function Room3D({ roomConfig, results }) {
       : defaultWallMaterial;
 
     const floorMaterial = new THREE.MeshStandardMaterial({ 
-      color: '#8b7355',
+      color: floorColor,
       roughness: 0.95,
       metalness: 0
     });
 
     const ceilingMaterial = new THREE.MeshStandardMaterial({ 
-      color: '#ffffff',
+      color: ceilingColor,
       roughness: 0.9,
       metalness: 0
     });
@@ -86,12 +89,10 @@ function Room3D({ roomConfig, results }) {
       floor: floorMaterial,
       ceiling: ceilingMaterial
     };
-  }, [wallTexture, targetWall]);
+  }, [wallTexture, targetWall, results?.colors]);
 
-  // Get openings for the textured wall
   const openings = results?.openings || [];
   
-  // Create geometries with openings for textured wall
   const frontGeometry = useMemo(() => 
     targetWall === 'front' ? createWallWithOpenings(width, height, openings) : new THREE.PlaneGeometry(width, height),
     [targetWall, width, height, openings]
@@ -113,8 +114,8 @@ function Room3D({ roomConfig, results }) {
   );
 
   return (
-    <group>
-      {/* Floor */}
+    <group {...props}>
+
       <mesh 
         position={[0, 0, 0]} 
         rotation={[-Math.PI / 2, 0, 0]}
@@ -124,7 +125,6 @@ function Room3D({ roomConfig, results }) {
         <primitive object={materials.floor} />
       </mesh>
 
-      {/* Ceiling */}
       <mesh 
         position={[0, height, 0]} 
         rotation={[Math.PI / 2, 0, 0]}
@@ -134,7 +134,6 @@ function Room3D({ roomConfig, results }) {
         <primitive object={materials.ceiling} />
       </mesh>
 
-      {/* Front Wall (towards camera) */}
       <mesh 
         position={[0, height / 2, depth / 2]} 
         rotation={[0, 0, 0]}
@@ -145,7 +144,6 @@ function Room3D({ roomConfig, results }) {
         <primitive object={materials.front} />
       </mesh>
 
-      {/* Back Wall */}
       <mesh 
         position={[0, height / 2, -depth / 2]} 
         rotation={[0, Math.PI, 0]}
@@ -156,7 +154,7 @@ function Room3D({ roomConfig, results }) {
         <primitive object={materials.back} />
       </mesh>
 
-      {/* Left Wall */}
+ 
       <mesh 
         position={[-width / 2, height / 2, 0]} 
         rotation={[0, Math.PI / 2, 0]}
@@ -167,7 +165,6 @@ function Room3D({ roomConfig, results }) {
         <primitive object={materials.left} />
       </mesh>
 
-      {/* Right Wall */}
       <mesh 
         position={[width / 2, height / 2, 0]} 
         rotation={[0, -Math.PI / 2, 0]}

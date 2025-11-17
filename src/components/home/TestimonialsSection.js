@@ -40,7 +40,7 @@ function TestimonialsSection() {
                   <StarIcon key={i} className="h-5 w-5 text-green-500" />
                 ))}
               </div>
-              <p className="text-gray-700 text-lg italic mb-6 flex-grow">&quot;{testimonial.quote}&quot;</p>
+              <p className="text-gray-700 text-lg italic mb-6 grow">&quot;{testimonial.quote}&quot;</p>
               <div>
                 <p className="font-bold text-gray-900">{testimonial.name}</p>
                 <p className="text-sm text-gray-500">{testimonial.role}</p>
