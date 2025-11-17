@@ -2,8 +2,17 @@
 
 import { useState } from 'react';
 import ControlPanel from '@/components/ControlPanel';
-import SceneViewer from '@/components/SceneViewer';
+import dynamic from 'next/dynamic';
 import { furniture as allFurniture } from '@/app/data/furnitureData';
+
+// Dynamically import the SceneViewer with SSR turned off
+const SceneViewer = dynamic(
+  () => import('@/components/SceneViewer'),
+  { 
+    ssr: false,
+    loading: () => <p>Loading 3D viewer...</p>
+  }
+);
 
 function Upload() {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,10 +30,13 @@ function Upload() {
     setIsLoading(true);
     setError(null);
     setResults(null);
-    setRoomConfig(config);
     setFurnitureInScene([]);
     setSelectedFurnitureInstanceId(null);
     setTransformMode('translate');
+
+    // --- DEBUG LOG ---
+    console.log("Setting new roomConfig:", config);
+    setRoomConfig(config); // Set the room config
 
     const formData = new FormData();
     formData.append('image', file);
@@ -49,8 +61,20 @@ function Upload() {
     }
   };
 
+  /**
+   * Adds a single piece of furniture to the scene.
+   */
   const handleAddFurniture = (furnitureItem) => {
-    if (!roomConfig) return;
+    // --- DEBUG LOGS ---
+    console.log("Attempting to add furniture:", furnitureItem.id);
+
+    if (!roomConfig) {
+      console.error("ADD FAILED: roomConfig is null. Please upload an image and generate the room first.");
+      return; 
+    }
+    
+    console.log("Room config is valid. Proceeding to add furniture.");
+    // --- END DEBUG LOGS ---
 
     const padding = 0.9;
     const x = (Math.random() - 0.5) * (roomConfig.width * padding);
@@ -67,16 +91,16 @@ function Upload() {
     setSelectedFurnitureInstanceId(newFurniture.instanceId);
   };
   
-
   const handleGenerateWithAI = async (prompt) => {
     if (!roomConfig) {
+      console.error("AI Generation FAILED: roomConfig is null.");
       setError("Please generate the 3D room first!");
       return;
     }
 
     setIsAiGenerating(true);
     setError(null);
-
+    
     const availableItems = allFurniture.map(item => ({
       id: item.id,
       name: item.name,
@@ -101,7 +125,6 @@ function Upload() {
       const data = await response.json();
       const itemIdsToadd = data.furniture_ids;
 
-      // 3. Build the new scene
       const newFurnitureArray = itemIdsToadd.map(id => {
         const item = allFurniture.find(f => f.id === id);
         if (!item) return null;
@@ -155,7 +178,7 @@ function Upload() {
   return (
     <div>
       <main className="flex flex-col lg:flex-row w-full min-h-screen bg-gray-100">
-
+        
         <ControlPanel
           onGenerate={handleGenerate}
           onAddFurniture={handleAddFurniture}
@@ -168,7 +191,7 @@ function Upload() {
           onGenerateWithAI={handleGenerateWithAI}
           isAiGenerating={isAiGenerating}
         />
-
+        
         <SceneViewer 
           results={results} 
           furnitureInScene={furnitureInScene} 
