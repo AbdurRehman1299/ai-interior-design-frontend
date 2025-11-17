@@ -5,7 +5,6 @@ import ControlPanel from '@/components/ControlPanel';
 import dynamic from 'next/dynamic';
 import { furniture as allFurniture } from '@/app/data/furnitureData';
 
-// Dynamically import the SceneViewer with SSR turned off
 const SceneViewer = dynamic(
   () => import('@/components/SceneViewer'),
   { 
@@ -34,9 +33,8 @@ function Upload() {
     setSelectedFurnitureInstanceId(null);
     setTransformMode('translate');
 
-    // --- DEBUG LOG ---
     console.log("Setting new roomConfig:", config);
-    setRoomConfig(config); // Set the room config
+    setRoomConfig(config);
 
     const formData = new FormData();
     formData.append('image', file);
@@ -61,11 +59,7 @@ function Upload() {
     }
   };
 
-  /**
-   * Adds a single piece of furniture to the scene.
-   */
   const handleAddFurniture = (furnitureItem) => {
-    // --- DEBUG LOGS ---
     console.log("Attempting to add furniture:", furnitureItem.id);
 
     if (!roomConfig) {
@@ -74,7 +68,6 @@ function Upload() {
     }
     
     console.log("Room config is valid. Proceeding to add furniture.");
-    // --- END DEBUG LOGS ---
 
     const padding = 0.9;
     const x = (Math.random() - 0.5) * (roomConfig.width * padding);
