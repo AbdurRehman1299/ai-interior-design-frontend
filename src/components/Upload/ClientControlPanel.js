@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import ControlPanel from '@/components/ControlPanel';
+import ControlPanel from '@/components/Upload/ControlPanel';
 import dynamic from 'next/dynamic';
 import { furniture as allFurniture } from '@/app/data/furnitureData';
+import NavigationBar from "@/components/NavigationBar";
 
 const SceneViewer = dynamic(
-  () => import('@/components/SceneViewer'),
+  () => import('@/components/Upload/SceneViewer'),
   { 
     ssr: false,
     loading: () => <p>Loading 3D viewer...</p>
@@ -170,7 +171,8 @@ function Upload() {
 
   return (
     <div>
-      <main className="flex flex-col lg:flex-row w-full min-h-screen bg-gray-100">
+        <NavigationBar />
+      <main className="flex flex-col lg:flex-row w-full min-h-screen bg-gray-100 mt-15">
         
         <ControlPanel
           onGenerate={handleGenerate}

@@ -1,4 +1,4 @@
-import ClientControlPanel from '@/components/ClientControlPanel';
+import ClientControlPanel from '@/components/Upload/ClientControlPanel';
 
 export const metadata = {
   title: 'Upload the Room Images - RoomDev',

@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import { XIcon, MenuIcon } from 'lucide-react';
+import Link from "next/link";
+import {Button} from "@/components/ui/button";
 
 function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -12,16 +14,18 @@ function Navigation() {
         <div className="flex justify-between items-center h-16">
 
           <div className="shrink-0 flex items-center">
-            <h1 className="text-2xl font-bold text-gray-900">
+            <Link href="/" className="text-2xl font-bold text-gray-900">
               Room<span className="text-green-600">Dev</span>
-            </h1>
+            </Link>
           </div>
 
           <div className="hidden md:flex md:items-center md:space-x-8">
             <a href="#" className="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
             <a href="#features" className="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Features</a>
             <a href="#testimonials" className="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Testimonials</a>
-            <a href="/upload" className="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Design</a>
+              <Button>
+                <Link href="/text-to-image" className="text-white px-3 py-2 rounded-md text-sm font-medium">Text-to-Image</Link>
+              </Button>
           </div>
 
           <div className="md:hidden flex items-center">
@@ -47,7 +51,9 @@ function Navigation() {
           <a href="#" className="text-gray-600 hover:bg-gray-50 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium">Home</a>
           <a href="#features" className="text-gray-600 hover:bg-gray-50 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium">Features</a>
           <a href="#testimonials" className="text-gray-600 hover:bg-gray-50 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium">Testimonials</a>
-          <a href="/upload" className="text-gray-600 hover:bg-gray-50 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium">Design Your Room</a>
+            <Button className="w-full">
+                <Link href="/text-to-image" className="text-white block px-3 py-2 rounded-md text-base font-medium">Text-to-Image</Link>
+            </Button>
         </div>
       </div>
     </nav>

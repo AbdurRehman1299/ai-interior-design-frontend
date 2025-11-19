@@ -1,9 +1,9 @@
 import Footer from '@/components/Footer';
-import CallToActionSection from '@/components/home/CallToAction';
-import FeaturesSection from '@/components/home/FeatureSection';
-import HeroSection from '@/components/home/HeroSection';
+import CallToActionSection from '@/components/Home/CallToAction';
+import FeaturesSection from '@/components/Home/FeatureSection';
+import HeroSection from '@/components/Home/HeroSection';
 import Navigation from '@/components/NavigationBar';
-import TestimonialsSection from '@/components/home/TestimonialsSection';
+import TestimonialsSection from '@/components/Home/TestimonialsSection';
 import React from 'react';
 
 export const metadata = {
