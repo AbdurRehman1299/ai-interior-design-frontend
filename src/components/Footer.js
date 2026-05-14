@@ -19,7 +19,7 @@ function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t border-gray-700 pt-8 text-center text-sm">
-          <p>&copy; 2025 RoomDev. All rights reserved.</p>
+          <p>&copy; 2025 VisionHome AI. All rights reserved.</p>
         </div>
       </div>
     </footer>

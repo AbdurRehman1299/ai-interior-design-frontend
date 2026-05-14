@@ -15,7 +15,7 @@ function Navigation() {
 
           <div className="shrink-0 flex items-center">
             <Link href="/" className="text-2xl font-bold text-gray-900">
-              Room<span className="text-green-600">Dev</span>
+              Vision Home<span className="text-green-600">AI</span>
             </Link>
           </div>
 

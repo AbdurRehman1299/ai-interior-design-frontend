@@ -4,7 +4,7 @@ import { StarIcon } from 'lucide-react';
 function TestimonialsSection() {
   const testimonials = [
     {
-      quote: "I was stuck in a rut with my living room. RoomDev gave me ideas I never would have thought of. My space feels brand new!",
+      quote: "I was stuck in a rut with my living room. VisionHome AI gave me ideas I never would have thought of. My space feels brand new!",
       name: "Sarah K.",
       role: "Homeowner",
       rating: 5,

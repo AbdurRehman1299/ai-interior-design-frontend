@@ -7,8 +7,8 @@ import TestimonialsSection from '@/components/Home/TestimonialsSection';
 import React from 'react';
 
 export const metadata = {
-  title: "Redesign Your Room with AI | RoomDev",
-  description: "Stuck on your room design? Use RoomDev for unlimited, free AI interior design ideas. Upload a photo and start visualizing your dream room in seconds."
+  title: "Redesign Your Room with AI | Vision Home AI",
+  description: "Stuck on your room design? Use VisionHome AI for unlimited, free AI interior design ideas. Upload a photo and start visualizing your dream room in seconds."
 }
 
 function Home(){
